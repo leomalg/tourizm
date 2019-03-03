@@ -7,4 +7,6 @@
 		relativeToChangelogFile="true" />
 	<include file="changelog/changeset/02-add-tour.xml"
 		relativeToChangelogFile="true" />
+	<include file="changelog/changeset/03-add-step-tour.xml"
+		relativeToChangelogFile="true" />
 </databaseChangeLog>
