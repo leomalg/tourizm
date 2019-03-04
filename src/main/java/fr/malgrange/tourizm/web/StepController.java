@@ -6,21 +6,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.malgrange.tourizm.domain.Step;
-import fr.malgrange.tourizm.repository.StepRepository;
+import fr.malgrange.tourizm.dto.StepDTO;
+import fr.malgrange.tourizm.service.StepService;
 
 @RestController
+@RequestMapping("step")
 public class StepController {
 
-	private StepRepository stepRepository;
+	private StepService stepService;
 
-	public StepController(StepRepository stepRepository) {
-		this.stepRepository = stepRepository;
+	public StepController(StepService stepService) {
+		this.stepService = stepService;
 	}
 
-	@RequestMapping("steps")
-	public ResponseEntity<List<Step>> index() {
-		final List<Step> steps = stepRepository.findAll();
-		return ResponseEntity.ok(steps);
+	@RequestMapping("")
+	public ResponseEntity<List<StepDTO>> getAllSteps() {
+		final List<StepDTO> stepDtos = stepService.findAllSteps();
+		return ResponseEntity.ok(stepDtos);
 	}
 }
