@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.malgrange.tourizm.dto.StepDTO;
+import fr.malgrange.tourizm.service.dto.StepDTO;
 import fr.malgrange.tourizm.service.StepService;
 
 @RestController

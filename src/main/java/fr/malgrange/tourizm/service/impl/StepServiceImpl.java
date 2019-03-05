@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import fr.malgrange.tourizm.domain.Step;
-import fr.malgrange.tourizm.dto.StepDTO;
-import fr.malgrange.tourizm.mapper.StepMapper;
+import fr.malgrange.tourizm.service.dto.StepDTO;
+import fr.malgrange.tourizm.service.mapper.StepMapper;
 import fr.malgrange.tourizm.repository.StepRepository;
 import fr.malgrange.tourizm.service.StepService;
 

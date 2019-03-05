@@ -1,4 +1,4 @@
-package fr.malgrange.tourizm.dto;
+package fr.malgrange.tourizm.service.dto;
 
 public class StepDTO {
 

@@ -1,10 +1,10 @@
-package fr.malgrange.tourizm.mapper;
+package fr.malgrange.tourizm.service.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 import fr.malgrange.tourizm.domain.Step;
-import fr.malgrange.tourizm.dto.StepDTO;
+import fr.malgrange.tourizm.service.dto.StepDTO;
 
 @Mapper
 public interface StepMapper {
