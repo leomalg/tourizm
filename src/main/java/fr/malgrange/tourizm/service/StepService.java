@@ -13,17 +13,23 @@ public interface StepService {
 	 */
 	List<StepDTO> findAllSteps();
 
+	List<StepDTO> getStepByTour(Integer tourId);
+
 	/**
 	 * Get a StepDTO given its id
 	 * @param id id of the step
 	 * @return
 	 */
-	Optional<StepDTO> getById(Integer id);
+	Optional<StepDTO> getStepById(Integer id);
 
 	/**
 	 *
 	 * @param stepDTO
 	 * @return
 	 */
-	StepDTO addOrUpdate(StepDTO stepDTO);
+	StepDTO createStep(StepDTO stepDTO);
+
+	StepDTO updateStep(StepDTO stepDTO);
+
+	void deleteStep(Integer id);
 }

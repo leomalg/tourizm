@@ -1,0 +1,30 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+    <changeSet id="02" author="lma">
+        <createTable tableName="step">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_step_id"/>
+            </column>
+            <column name="name" type="varchar(256)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="varchar(1024)"/>
+            <column name="latitude" type="varchar(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="longitude" type="varchar(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_tour" type="int">
+                <constraints nullable="false" references="tour(id)" foreignKeyName="FK_step_idTour_tour"/>
+            </column>
+            <column name="order" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint columnNames="id_tour, order" tableName="step" constraintName="UQ_step_idTour_order"/>
+    </changeSet>
+</databaseChangeLog>

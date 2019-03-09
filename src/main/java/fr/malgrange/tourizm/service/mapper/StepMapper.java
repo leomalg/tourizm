@@ -7,11 +7,7 @@ import fr.malgrange.tourizm.domain.Step;
 import fr.malgrange.tourizm.service.dto.StepDTO;
 
 @Mapper
-public interface StepMapper {
+public interface StepMapper extends EntityMapper<StepDTO, Step>  {
 
-	StepMapper INSTANCE = Mappers.getMapper(StepMapper.class);
-	
-	StepDTO toDto(Step step);
-	
-	Step toEntity(StepDTO dto);
+	StepMapper MAPPER = Mappers.getMapper(StepMapper.class);
 }

@@ -1,18 +1,21 @@
 package fr.malgrange.tourizm.service.dto;
 
+import java.util.Objects;
+
 public class StepDTO {
 
-	private int id;
+	private Integer id;
 	private String name;
 	private String description;
 	private String latitude;
 	private String longitude;
+	private Integer order;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -48,55 +51,41 @@ public class StepDTO {
 		this.longitude = longitude;
 	}
 
+	public Integer getOrder() {
+		return order;
+	}
+
+	public void setOrder(Integer order) {
+		this.order = order;
+	}
+
 	@Override
-	public String toString() {
-		return "Step [id=" + id + ", name=" + name + ", description=" + description + ", latitude=" + latitude
-				+ ", longitude=" + longitude + "]";
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		StepDTO stepDTO = (StepDTO) o;
+		return id.equals(stepDTO.id) &&
+				name.equals(stepDTO.name) &&
+				Objects.equals(description, stepDTO.description) &&
+				latitude.equals(stepDTO.latitude) &&
+				longitude.equals(stepDTO.longitude) &&
+				order.equals(stepDTO.order);
 	}
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + id;
-		result = prime * result + ((latitude == null) ? 0 : latitude.hashCode());
-		result = prime * result + ((longitude == null) ? 0 : longitude.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
+		return Objects.hash(id, name, description, latitude, longitude, order);
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		StepDTO other = (StepDTO) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (id != other.id)
-			return false;
-		if (latitude == null) {
-			if (other.latitude != null)
-				return false;
-		} else if (!latitude.equals(other.latitude))
-			return false;
-		if (longitude == null) {
-			if (other.longitude != null)
-				return false;
-		} else if (!longitude.equals(other.longitude))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
+	public String toString() {
+		return "StepDTO{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", description='" + description + '\'' +
+				", latitude='" + latitude + '\'' +
+				", longitude='" + longitude + '\'' +
+				", order=" + order +
+				'}';
 	}
 }

@@ -1,9 +1,6 @@
 package fr.malgrange.tourizm.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -12,17 +9,20 @@ public class Step {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private long id;
 	private String name;
 	private String description;
 	private String latitude;
 	private String longitude;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Tour tour;
+	private int order;
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -58,10 +58,20 @@ public class Step {
 		this.longitude = longitude;
 	}
 
-	@Override
-	public String toString() {
-		return "Step [id=" + id + ", name=" + name + ", description=" + description + ", latitude=" + latitude
-				+ ", longitude=" + longitude + "]";
+	public Tour getTour() {
+		return tour;
+	}
+
+	public void setTour(Tour tour) {
+		this.tour = tour;
+	}
+
+	public int getOrder() {
+		return order;
+	}
+
+	public void setOrder(int order) {
+		this.order = order;
 	}
 
 	@Override
@@ -70,14 +80,29 @@ public class Step {
 		if (o == null || getClass() != o.getClass()) return false;
 		Step step = (Step) o;
 		return id == step.id &&
+				order == step.order &&
 				name.equals(step.name) &&
 				Objects.equals(description, step.description) &&
 				latitude.equals(step.latitude) &&
-				longitude.equals(step.longitude);
+				longitude.equals(step.longitude) &&
+				tour.equals(step.tour);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, name, description, latitude, longitude);
+		return Objects.hash(id, name, description, latitude, longitude, tour, order);
+	}
+
+	@Override
+	public String toString() {
+		return "Step{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", description='" + description + '\'' +
+				", latitude='" + latitude + '\'' +
+				", longitude='" + longitude + '\'' +
+				", tour=" + tour +
+				", order=" + order +
+				'}';
 	}
 }

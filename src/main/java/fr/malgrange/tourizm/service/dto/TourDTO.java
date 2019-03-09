@@ -1,27 +1,21 @@
-package fr.malgrange.tourizm.domain;
+package fr.malgrange.tourizm.service.dto;
 
-import javax.persistence.*;
-import java.util.Collection;
+import org.springframework.lang.NonNull;
+
 import java.util.Objects;
 
-@Entity
-@Table(name = "TOUR")
-public class Tour {
+public class TourDTO {
 
-    @Id
-    @GeneratedValue
-    private long id;
+    private Integer id;
     private String name;
     private String description;
     private Integer duration;
-    @OneToMany(fetch = FetchType.LAZY)
-    private Collection<Step> steps;
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -49,23 +43,15 @@ public class Tour {
         this.duration = duration;
     }
 
-    public Collection<Step> getSteps() {
-        return steps;
-    }
-
-    public void setSteps(Collection<Step> steps) {
-        this.steps = steps;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Tour tour = (Tour) o;
-        return id == tour.id &&
-                name.equals(tour.name) &&
-                Objects.equals(description, tour.description) &&
-                Objects.equals(duration, tour.duration);
+        TourDTO tourDTO = (TourDTO) o;
+        return id.equals(tourDTO.id) &&
+                name.equals(tourDTO.name) &&
+                Objects.equals(description, tourDTO.description) &&
+                duration.equals(tourDTO.duration);
     }
 
     @Override
@@ -75,7 +61,7 @@ public class Tour {
 
     @Override
     public String toString() {
-        return "Tour{" +
+        return "TourDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
