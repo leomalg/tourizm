@@ -1,7 +1,6 @@
 package fr.malgrange.tourizm.service.dto;
 
-import org.springframework.lang.NonNull;
-
+import java.time.LocalTime;
 import java.util.Objects;
 
 public class TourDTO {
@@ -9,7 +8,7 @@ public class TourDTO {
     private Integer id;
     private String name;
     private String description;
-    private Integer duration;
+    private LocalTime duration;
 
     public Integer getId() {
         return id;
@@ -35,11 +34,11 @@ public class TourDTO {
         this.description = description;
     }
 
-    public Integer getDuration() {
+    public LocalTime getDuration() {
         return duration;
     }
 
-    public void setDuration(Integer duration) {
+    public void setDuration(LocalTime duration) {
         this.duration = duration;
     }
 

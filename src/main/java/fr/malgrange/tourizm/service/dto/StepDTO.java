@@ -10,6 +10,7 @@ public class StepDTO {
 	private String latitude;
 	private String longitude;
 	private Integer order;
+	private TourDTO tourDTO;
 
 	public Integer getId() {
 		return id;
@@ -57,6 +58,14 @@ public class StepDTO {
 
 	public void setOrder(Integer order) {
 		this.order = order;
+	}
+
+	public TourDTO getTourDTO() {
+		return tourDTO;
+	}
+
+	public void setTourDTO(TourDTO tourDTO) {
+		this.tourDTO = tourDTO;
 	}
 
 	@Override

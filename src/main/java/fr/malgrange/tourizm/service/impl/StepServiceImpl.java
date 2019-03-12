@@ -1,30 +1,30 @@
 package fr.malgrange.tourizm.service.impl;
 
+import fr.malgrange.tourizm.domain.Step;
+import fr.malgrange.tourizm.repository.StepRepository;
+import fr.malgrange.tourizm.repository.TourRepository;
+import fr.malgrange.tourizm.service.StepService;
+import fr.malgrange.tourizm.service.dto.StepDTO;
+import fr.malgrange.tourizm.service.mapper.StepMapper;
+import org.springframework.stereotype.Service;
+
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
-import org.springframework.stereotype.Service;
-
-import fr.malgrange.tourizm.domain.Step;
-import fr.malgrange.tourizm.service.dto.StepDTO;
-import fr.malgrange.tourizm.service.mapper.StepMapper;
-import fr.malgrange.tourizm.repository.StepRepository;
-import fr.malgrange.tourizm.service.StepService;
-
-import javax.validation.constraints.NotNull;
 
 @Service
 public class StepServiceImpl implements StepService {
 
     private StepRepository stepRepository;
+    private TourRepository tourRepository ;
 
-    public StepServiceImpl(StepRepository stepRepository) {
+    public StepServiceImpl(StepRepository stepRepository, TourRepository tourRepository) {
         this.stepRepository = stepRepository;
+        this.tourRepository = tourRepository;
     }
 
-    public List<StepDTO> findAllSteps() {
+    public List<StepDTO> findAllStep() {
         final List<Step> steps = stepRepository.findAll();
         return StepMapper.MAPPER.toDto(steps);
     }
@@ -56,5 +56,11 @@ public class StepServiceImpl implements StepService {
     @Override
     public void deleteStep(@NotNull Integer id) {
         stepRepository.deleteById(id);
+    }
+
+    private void checkStep(StepDTO stepDTO) {
+        // if StepDTO(stepDTO.getTourDTO())
+        // TODO
+
     }
 }

@@ -1,6 +1,7 @@
 package fr.malgrange.tourizm.domain;
 
 import javax.persistence.*;
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -13,7 +14,7 @@ public class Tour {
     private long id;
     private String name;
     private String description;
-    private Integer duration;
+    private LocalTime duration;
     @OneToMany(fetch = FetchType.LAZY)
     private Collection<Step> steps;
 
@@ -41,11 +42,11 @@ public class Tour {
         this.description = description;
     }
 
-    public Integer getDuration() {
+    public LocalTime getDuration() {
         return duration;
     }
 
-    public void setDuration(Integer duration) {
+    public void setDuration(LocalTime duration) {
         this.duration = duration;
     }
 

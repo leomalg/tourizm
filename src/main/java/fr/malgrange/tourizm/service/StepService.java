@@ -1,9 +1,9 @@
 package fr.malgrange.tourizm.service;
 
+import fr.malgrange.tourizm.service.dto.StepDTO;
+
 import java.util.List;
 import java.util.Optional;
-
-import fr.malgrange.tourizm.service.dto.StepDTO;
 
 public interface StepService {
 
@@ -11,7 +11,7 @@ public interface StepService {
 	 * Get all steps from the database
 	 * @return list of StepDtos
 	 */
-	List<StepDTO> findAllSteps();
+	List<StepDTO> findAllStep();
 
 	List<StepDTO> getStepByTour(Integer tourId);
 
