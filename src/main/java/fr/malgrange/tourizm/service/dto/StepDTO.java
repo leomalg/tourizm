@@ -78,12 +78,13 @@ public class StepDTO {
 				Objects.equals(description, stepDTO.description) &&
 				latitude.equals(stepDTO.latitude) &&
 				longitude.equals(stepDTO.longitude) &&
-				order.equals(stepDTO.order);
+				order.equals(stepDTO.order) &&
+				tourDTO.equals(stepDTO.tourDTO);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, name, description, latitude, longitude, order);
+		return Objects.hash(id, name, description, latitude, longitude, order, tourDTO);
 	}
 
 	@Override
@@ -95,6 +96,7 @@ public class StepDTO {
 				", latitude='" + latitude + '\'' +
 				", longitude='" + longitude + '\'' +
 				", order=" + order +
+				", tourDTO=" + tourDTO +
 				'}';
 	}
 }

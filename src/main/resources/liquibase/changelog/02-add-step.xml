@@ -1,11 +1,11 @@
 <databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
-         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
     <changeSet id="02" author="lma">
         <createTable tableName="step">
-            <column name="id" type="int" autoIncrement="true">
+            <column name="id" type="int" autoIncrement="true" startWith="1" incrementBy="1">
                 <constraints primaryKey="true" primaryKeyName="PK_step_id"/>
             </column>
             <column name="name" type="varchar(256)">

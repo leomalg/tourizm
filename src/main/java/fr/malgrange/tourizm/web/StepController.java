@@ -6,10 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("")
 public class StepController {
 
 	private StepService stepService;
@@ -18,36 +18,36 @@ public class StepController {
 		this.stepService = stepService;
 	}
 
-	@GetMapping("")
+	@GetMapping("steps")
 	public ResponseEntity<List<StepDTO>> getAllSteps() {
 		final List<StepDTO> stepDtos = stepService.findAllStep();
 		return ResponseEntity.ok(stepDtos);
 	}
 
-    @GetMapping("/{id}")
+    @GetMapping("steps/{id}")
     public ResponseEntity<StepDTO> getStepById(@PathVariable Integer id) {
-        Optional<StepDTO> stepDtoOpt = stepService.getStepById(id);
+        final Optional<StepDTO> stepDtoOpt = stepService.getStepById(id);
         return stepDtoOpt.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public ResponseEntity<StepDTO> createStep(@RequestBody StepDTO stepDto) {
-        if (Objects.isNull(stepDto.getId())) {
-            return ResponseEntity.badRequest().build();
-        }
-        return ResponseEntity.ok(stepService.createStep(stepDto));
+    @GetMapping("tours/{tourId}/steps")
+    public ResponseEntity<List<StepDTO>> getStepByTour(@PathVariable Integer tourId) {
+        final List<StepDTO> stepDTOList = stepService.getStepByTour(tourId);
+        return ResponseEntity.ok(stepDTOList);
     }
 
-    @PutMapping
-    public ResponseEntity<StepDTO> updateStep(@RequestBody StepDTO stepDto) {
-        if (Objects.nonNull(stepDto.getId())) {
-            return ResponseEntity.badRequest().build();
-        }
+    @PostMapping("tours/{tourId}/steps")
+    public ResponseEntity<StepDTO> createStep(@PathVariable Integer tourId, @RequestBody StepDTO stepDto) {
+        return ResponseEntity.ok(stepService.createStep(tourId, stepDto));
+    }
+
+    @PutMapping("tours/{tourId}/steps")
+    public ResponseEntity<StepDTO> updateStep(@PathVariable Integer tourId, @RequestBody StepDTO stepDto) {
         return ResponseEntity.ok(stepService.updateStep(stepDto));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity deleteStep(@PathVariable Integer id) {
+    @DeleteMapping("tours/{tourId}/steps")
+    public ResponseEntity deleteStep(@PathVariable Integer tourId, @PathVariable Integer id) {
         stepService.deleteStep(id);
         return ResponseEntity.ok().build();
     }

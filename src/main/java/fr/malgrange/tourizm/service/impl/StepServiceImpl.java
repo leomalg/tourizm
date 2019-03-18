@@ -4,7 +4,9 @@ import fr.malgrange.tourizm.domain.Step;
 import fr.malgrange.tourizm.repository.StepRepository;
 import fr.malgrange.tourizm.repository.TourRepository;
 import fr.malgrange.tourizm.service.StepService;
+import fr.malgrange.tourizm.service.TourService;
 import fr.malgrange.tourizm.service.dto.StepDTO;
+import fr.malgrange.tourizm.service.dto.TourDTO;
 import fr.malgrange.tourizm.service.mapper.StepMapper;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +19,12 @@ import java.util.Optional;
 public class StepServiceImpl implements StepService {
 
     private StepRepository stepRepository;
+    private TourService tourService;
     private TourRepository tourRepository ;
 
-    public StepServiceImpl(StepRepository stepRepository, TourRepository tourRepository) {
+    public StepServiceImpl(StepRepository stepRepository, TourService tourService, TourRepository tourRepository) {
         this.stepRepository = stepRepository;
+        this.tourService = tourService;
         this.tourRepository = tourRepository;
     }
 
@@ -40,7 +44,12 @@ public class StepServiceImpl implements StepService {
     }
 
     @Override
-    public StepDTO createStep(@NotNull StepDTO stepDTO) {
+    public StepDTO createStep(@NotNull Integer tourId, @NotNull StepDTO stepDTO) {
+        Optional<TourDTO> tourDTOOpt = tourService.getTourById(tourId);
+        if (!tourDTOOpt.isPresent()) {
+            // TODO throw exception
+        }
+        stepDTO.setTourDTO(tourDTOOpt.get());
         return StepMapper.MAPPER.toDto(stepRepository.save(StepMapper.MAPPER.toEntity(stepDTO)));
     }
 

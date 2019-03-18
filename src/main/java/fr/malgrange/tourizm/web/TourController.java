@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 import static org.springframework.http.ResponseEntity.ok;
@@ -35,17 +34,11 @@ public class TourController {
 
 	@PostMapping
 	public ResponseEntity<TourDTO> createTour(@RequestBody TourDTO tourDto) {
-		if (Objects.nonNull(tourDto.getId())) {
-			return ResponseEntity.badRequest().build();
-		}
 		return ResponseEntity.ok(tourService.createTour(tourDto));
 	}
 
 	@PutMapping
 	public ResponseEntity<TourDTO> updateTour(@RequestBody TourDTO tourDto) {
-		if (Objects.isNull(tourDto.getId())) {
-			return ResponseEntity.badRequest().build();
-		}
 		return ResponseEntity.ok(tourService.updateTour(tourDto));
 	}
 

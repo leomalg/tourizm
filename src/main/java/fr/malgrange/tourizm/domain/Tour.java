@@ -2,21 +2,22 @@ package fr.malgrange.tourizm.domain;
 
 import javax.persistence.*;
 import java.time.LocalTime;
-import java.util.Collection;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "TOUR")
 public class Tour {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(nullable = false)
     private String name;
     private String description;
     private LocalTime duration;
-    @OneToMany(fetch = FetchType.LAZY)
-    private Collection<Step> steps;
+    @OneToMany(mappedBy = "tour", fetch = FetchType.LAZY) //, cascade = CascadeType.ALL, , targetEntity = Step.class)
+    private Set<Step> steps;
 
     public long getId() {
         return id;
@@ -50,12 +51,23 @@ public class Tour {
         this.duration = duration;
     }
 
-    public Collection<Step> getSteps() {
+    public Set<Step> getSteps() {
         return steps;
     }
 
-    public void setSteps(Collection<Step> steps) {
+    public void setSteps(Set<Step> steps) {
         this.steps = steps;
+    }
+
+    @Override
+    public String toString() {
+        return "Tour{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", duration=" + duration +
+                ", steps=" + steps +
+                '}';
     }
 
     @Override
@@ -66,21 +78,13 @@ public class Tour {
         return id == tour.id &&
                 name.equals(tour.name) &&
                 Objects.equals(description, tour.description) &&
-                Objects.equals(duration, tour.duration);
+                duration.equals(tour.duration) &&
+                steps.equals(tour.steps);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, duration);
+        return Objects.hash(id, name, description, duration, steps);
     }
 
-    @Override
-    public String toString() {
-        return "Tour{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", duration=" + duration +
-                '}';
-    }
 }

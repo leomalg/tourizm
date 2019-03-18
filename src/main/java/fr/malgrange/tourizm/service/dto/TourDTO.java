@@ -2,6 +2,7 @@ package fr.malgrange.tourizm.service.dto;
 
 import java.time.LocalTime;
 import java.util.Objects;
+import java.util.Set;
 
 public class TourDTO {
 
@@ -9,6 +10,8 @@ public class TourDTO {
     private String name;
     private String description;
     private LocalTime duration;
+    private Set<StepDTO> stepDTOs;
+    private Integer stepCount;
 
     public Integer getId() {
         return id;
@@ -42,6 +45,22 @@ public class TourDTO {
         this.duration = duration;
     }
 
+    public Integer getStepCount() {
+        return stepCount;
+    }
+
+    public void setStepCount(Integer stepCount) {
+        this.stepCount = stepCount;
+    }
+
+    public Set<StepDTO> getStepDTOs() {
+        return stepDTOs;
+    }
+
+    public void setStepDTOs(Set<StepDTO> stepDTOs) {
+        this.stepDTOs = stepDTOs;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,12 +69,14 @@ public class TourDTO {
         return id.equals(tourDTO.id) &&
                 name.equals(tourDTO.name) &&
                 Objects.equals(description, tourDTO.description) &&
-                duration.equals(tourDTO.duration);
+                duration.equals(tourDTO.duration) &&
+                Objects.equals(stepDTOs, tourDTO.stepDTOs) &&
+                Objects.equals(stepCount, tourDTO.stepCount);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, duration);
+        return Objects.hash(id, name, description, duration, stepDTOs, stepCount);
     }
 
     @Override
@@ -65,6 +86,8 @@ public class TourDTO {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", duration=" + duration +
+                ", stepDTOs=" + stepDTOs +
+                ", stepCount=" + stepCount +
                 '}';
     }
 }
