@@ -66,10 +66,4 @@ public class StepServiceImpl implements StepService {
     public void deleteStep(@NotNull Integer id) {
         stepRepository.deleteById(id);
     }
-
-    private void checkStep(StepDTO stepDTO) {
-        // if StepDTO(stepDTO.getTourDTO())
-        // TODO
-
-    }
 }

@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import static org.springframework.http.ResponseEntity.ok;
 
+@CrossOrigin
 @RestController
 @RequestMapping("tours")
 public class TourController {
