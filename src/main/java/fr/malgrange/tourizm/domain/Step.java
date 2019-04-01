@@ -9,7 +9,7 @@ public class Step {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
@@ -23,11 +23,11 @@ public class Step {
     @JoinColumn(name = "tour_id", referencedColumnName = "id", nullable = false)
     private Tour tour;
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

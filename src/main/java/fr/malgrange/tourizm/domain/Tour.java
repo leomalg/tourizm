@@ -11,7 +11,7 @@ public class Tour {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
     @Column(nullable = false)
     private String name;
     private String description;
@@ -19,11 +19,11 @@ public class Tour {
     @OneToMany(mappedBy = "tour", fetch = FetchType.LAZY) //, cascade = CascadeType.ALL, , targetEntity = Step.class)
     private Set<Step> steps;
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
