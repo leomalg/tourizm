@@ -18,7 +18,8 @@ public class Step {
     private String latitude;
     @Column(nullable = false)
     private String longitude;
-    private int order;
+    @Column(name="step_order")
+    private int stepOrder;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tour_id", referencedColumnName = "id", nullable = false)
     private Tour tour;
@@ -71,12 +72,12 @@ public class Step {
         this.tour = tour;
     }
 
-    public int getOrder() {
-        return order;
+    public int getStepOrder() {
+        return stepOrder;
     }
 
-    public void setOrder(int order) {
-        this.order = order;
+    public void setStepOrder(int stepOrder) {
+        this.stepOrder = stepOrder;
     }
 
     @Override
@@ -85,7 +86,7 @@ public class Step {
         if (o == null || getClass() != o.getClass()) return false;
         Step step = (Step) o;
         return id == step.id &&
-                order == step.order &&
+                stepOrder == step.stepOrder &&
                 name.equals(step.name) &&
                 Objects.equals(description, step.description) &&
                 latitude.equals(step.latitude) &&
@@ -95,7 +96,7 @@ public class Step {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, latitude, longitude,/* tour, */order);
+        return Objects.hash(id, name, description, latitude, longitude,/* tour, */stepOrder);
     }
 
     @Override
@@ -107,7 +108,7 @@ public class Step {
                 ", latitude='" + latitude + '\'' +
                 ", longitude='" + longitude + '\'' +
                 /*", tour=" + tour +*/
-                ", order=" + order +
+                ", stepOrder=" + stepOrder +
                 '}';
     }
 }

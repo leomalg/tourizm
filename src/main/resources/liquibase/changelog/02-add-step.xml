@@ -21,10 +21,10 @@
             <column name="tour_id" type="int">
                 <constraints nullable="false" references="tour(id)" foreignKeyName="FK_step_tourId_tour"/>
             </column>
-            <column name="order" type="int">
+            <column name="step_order" type="int">
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addUniqueConstraint columnNames="tour_id, order" tableName="step" constraintName="UQ_step_tourId_order"/>
+        <addUniqueConstraint columnNames="tour_id, step_order" tableName="step" constraintName="UQ_step_tourId_order"/>
     </changeSet>
 </databaseChangeLog>

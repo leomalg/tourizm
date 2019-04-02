@@ -35,7 +35,10 @@ public class StepServiceImpl implements StepService {
 
     @Override
     public List<StepDTO> getStepByTour(Integer tourId) {
-        return null;
+        if (Objects.isNull(tourId)) {
+            // TODO throw exception
+        }
+        return StepMapper.MAPPER.toDto(stepRepository.findAllByTour_Id(tourId));
     }
 
     @Override
@@ -49,8 +52,12 @@ public class StepServiceImpl implements StepService {
         if (!tourDTOOpt.isPresent()) {
             // TODO throw exception
         }
+        if (Objects.nonNull(stepDTO.getId())) {
+            // TODO throw exception
+        }
         stepDTO.setTourDTO(tourDTOOpt.get());
-        return StepMapper.MAPPER.toDto(stepRepository.save(StepMapper.MAPPER.toEntity(stepDTO)));
+        Step step = StepMapper.MAPPER.toEntity(stepDTO);
+        return StepMapper.MAPPER.toDto(stepRepository.save(step));
     }
 
     @Override

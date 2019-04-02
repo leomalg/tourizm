@@ -47,7 +47,7 @@ public class StepController {
         return ResponseEntity.ok(stepService.updateStep(stepDto));
     }
 
-    @DeleteMapping("tours/{tourId}/steps")
+    @DeleteMapping("tours/{tourId}/steps/{id}")
     public ResponseEntity deleteStep(@PathVariable Integer tourId, @PathVariable Integer id) {
         stepService.deleteStep(id);
         return ResponseEntity.ok().build();

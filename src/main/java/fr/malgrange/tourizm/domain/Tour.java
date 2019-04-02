@@ -16,7 +16,7 @@ public class Tour {
     private String name;
     private String description;
     private LocalTime duration;
-    @OneToMany(mappedBy = "tour", fetch = FetchType.LAZY) //, cascade = CascadeType.ALL, , targetEntity = Step.class)
+    @OneToMany(mappedBy = "tour", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.REMOVE)
     private Set<Step> steps;
 
     public Integer getId() {

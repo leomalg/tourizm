@@ -10,8 +10,7 @@ public class TourDTO {
     private String name;
     private String description;
     private LocalTime duration;
-    private Set<StepDTO> stepDTOs;
-    private Integer stepCount;
+    private Set<StepDTO> steps;
 
     public Integer getId() {
         return id;
@@ -45,20 +44,12 @@ public class TourDTO {
         this.duration = duration;
     }
 
-    public Integer getStepCount() {
-        return stepCount;
+    public Set<StepDTO> getSteps() {
+        return steps;
     }
 
-    public void setStepCount(Integer stepCount) {
-        this.stepCount = stepCount;
-    }
-
-    public Set<StepDTO> getStepDTOs() {
-        return stepDTOs;
-    }
-
-    public void setStepDTOs(Set<StepDTO> stepDTOs) {
-        this.stepDTOs = stepDTOs;
+    public void setSteps(Set<StepDTO> steps) {
+        this.steps = steps;
     }
 
     @Override
@@ -70,13 +61,12 @@ public class TourDTO {
                 name.equals(tourDTO.name) &&
                 Objects.equals(description, tourDTO.description) &&
                 duration.equals(tourDTO.duration) &&
-                Objects.equals(stepDTOs, tourDTO.stepDTOs) &&
-                Objects.equals(stepCount, tourDTO.stepCount);
+                Objects.equals(steps, tourDTO.steps);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, duration, stepDTOs, stepCount);
+        return Objects.hash(id, name, description, duration, steps);
     }
 
     @Override
@@ -86,8 +76,7 @@ public class TourDTO {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", duration=" + duration +
-                ", stepDTOs=" + stepDTOs +
-                ", stepCount=" + stepCount +
+                ", steps=" + steps +
                 '}';
     }
 }
