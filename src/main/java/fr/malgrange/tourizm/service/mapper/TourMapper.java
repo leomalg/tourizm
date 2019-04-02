@@ -8,6 +8,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 
+import java.util.Objects;
 import java.util.Set;
 
 @Mapper(uses = StepMapper.class)
@@ -24,6 +25,6 @@ public interface TourMapper extends EntityMapper<TourDTO, Tour> {
 
     @Named("getStepCount")
     default Integer getStepCount(Set<Step> steps) {
-        return steps.size();
+        return (Objects.isNull(steps) ? 0 : steps.size());
     }
 }
