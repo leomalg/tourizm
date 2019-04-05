@@ -15,37 +15,37 @@ import static org.springframework.http.ResponseEntity.ok;
 @RequestMapping("tours")
 public class TourController {
 
-	private TourService tourService;
+    private TourService tourService;
 
-	public TourController(TourService tourService) {
-		this.tourService = tourService;
-	}
-
-	@GetMapping("")
-	public ResponseEntity<List<TourDTO>> getAllTours() {
-		final List<TourDTO> tourDTOS = tourService.findAllTour();
-		return ok(tourDTOS);
-	}
-
-	@GetMapping("/{id}")
-    public ResponseEntity<TourDTO> getTourById(@PathVariable Integer id) {
-		Optional<TourDTO> tourDtoOpt = tourService.getTourById(id);
-		return tourDtoOpt.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public TourController(TourService tourService) {
+        this.tourService = tourService;
     }
 
-	@PostMapping
-	public ResponseEntity<TourDTO> createTour(@RequestBody TourDTO tourDto) {
-		return ResponseEntity.ok(tourService.createTour(tourDto));
-	}
+    @GetMapping("")
+    public ResponseEntity<List<TourDTO>> getAllTours() {
+        final List<TourDTO> tourDTOS = tourService.findAllTour();
+        return ok(tourDTOS);
+    }
 
-	@PutMapping
-	public ResponseEntity<TourDTO> updateTour(@RequestBody TourDTO tourDto) {
-		return ResponseEntity.ok(tourService.updateTour(tourDto));
-	}
+    @GetMapping("/{id}")
+    public ResponseEntity<TourDTO> getTourById(@PathVariable Integer id) {
+        Optional<TourDTO> tourDtoOpt = tourService.getTourById(id);
+        return tourDtoOpt.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity deleteTour(@PathVariable Integer id) {
-		tourService.deleteTour(id);
-		return ResponseEntity.ok().build();
-	}
+    @PostMapping
+    public ResponseEntity<TourDTO> createTour(@RequestBody TourDTO tourDto) {
+        return ResponseEntity.ok(tourService.createTour(tourDto));
+    }
+
+    @PutMapping
+    public ResponseEntity<TourDTO> updateTour(@RequestBody TourDTO tourDto) {
+        return ResponseEntity.ok(tourService.updateTour(tourDto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteTour(@PathVariable Integer id) {
+        tourService.deleteTour(id);
+        return ResponseEntity.ok().build();
+    }
 }
