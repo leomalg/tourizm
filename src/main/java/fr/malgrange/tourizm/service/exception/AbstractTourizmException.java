@@ -8,12 +8,12 @@ public abstract class AbstractTourizmException extends RuntimeException {
     private final List<String> errors = new ArrayList<>();
 
     AbstractTourizmException(String error) {
-        super();
+        super(error);
         this.errors.add(error);
     }
 
     AbstractTourizmException(List<String> errors) {
-        super();
+        super("[" + String.join(",", errors) + "]");
         this.errors.addAll(errors);
     }
 

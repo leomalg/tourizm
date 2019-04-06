@@ -28,21 +28,21 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(BadRequestException.class)
     @ResponseBody
     public ResponseEntity<List<String>> badRequestExceptionOccured(final BadRequestException badRequestException) {
-        LOGGER.error(badRequestException);
+        LOGGER.error(badRequestException.getErrors(), badRequestException);
         return exceptionHandler(badRequestException.getErrors(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(NotFoundException.class)
     @ResponseBody
     public ResponseEntity<List<String>> notFoundExceptionOccured(final NotFoundException notFoundException) {
-        LOGGER.error(notFoundException);
+        LOGGER.error(notFoundException.getErrors(), notFoundException);
         return exceptionHandler(notFoundException.getErrors(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(TechnicalException.class)
     @ResponseBody
     public ResponseEntity<List<String>> technicalExceptionOccured(final TechnicalException technicalException) {
-        LOGGER.error(technicalException);
+        LOGGER.error(technicalException.getErrors(), technicalException);
         return exceptionHandler(technicalException.getErrors(), HttpStatus.NOT_FOUND);
     }
 
