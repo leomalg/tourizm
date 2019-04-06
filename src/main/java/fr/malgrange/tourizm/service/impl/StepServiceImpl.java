@@ -56,13 +56,13 @@ public class StepServiceImpl implements StepService {
         if (Objects.nonNull(stepDTO.getId())) {
             throw new BadRequestException("Une étape possédant déjà un identifiant ne peut pas être créée.");
         }
-        checkRequiredFields(stepDTO);
         final Optional<Tour> tourOpt = tourRepository.findById(tourId);
         if (!tourOpt.isPresent()) {
-            throw new BadRequestException("Le circuit rattaché à l 'étape n'existe pas.");
+            throw new BadRequestException("Le circuit rattaché à l'étape n'existe pas.");
         }
         stepDTO.setTourDTO(TourMapper.MAPPER.toDto(tourOpt.get()));
         checkRequiredFields(stepDTO);
+        checkUniqueFields(stepDTO);
         final Step step = StepMapper.MAPPER.toEntity(stepDTO);
         return StepMapper.MAPPER.toDto(stepRepository.save(step));
     }
