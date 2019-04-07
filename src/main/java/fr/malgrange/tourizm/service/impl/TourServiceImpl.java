@@ -94,8 +94,8 @@ public class TourServiceImpl implements TourService {
      */
     private void checkUniqueFields(TourDTO tourDTO) {
         final List<String> errors = new ArrayList<>();
-        if ((Objects.nonNull(tourDTO.getId()) && tourRepository.existsByNameIgnoreCase(tourDTO.getName())) ||
-                Objects.isNull(tourDTO.getId()) && tourRepository.existsByNameIgnoreCaseAndIdNotIn(tourDTO.getName(), Collections.singletonList(tourDTO.getId()))) {
+        if ((Objects.isNull(tourDTO.getId()) && tourRepository.existsByNameIgnoreCase(tourDTO.getName())) ||
+                (Objects.nonNull(tourDTO.getId()) && tourRepository.existsByNameIgnoreCaseAndIdNotIn(tourDTO.getName(), Collections.singletonList(tourDTO.getId())))) {
             errors.add("Un circuit existe déjà avec ce nom.");
         }
         if (!errors.isEmpty()) {
